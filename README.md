@@ -1,4 +1,6 @@
-README.md ============================================================================================================
+=======
+# armadillo_armanpy
+Simple build and install of armadillo-8.500.1 and swig based python library armanpy-0.1.4
 
 1. Clone armadillo_armanpy in to some location.
 2. Install liblapack, libblas dependencies. 
