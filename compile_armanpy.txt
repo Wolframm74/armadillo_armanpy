@@ -1,0 +1,15 @@
+#cmake .. -DCMAKE_BUILD_TYPE=Release -DARMADILLO_INCLUDE_DIR=/path/to/armadillo/include -DARMADILLO_LIBRARIES=/path/to/armadillo/library
+
+#From root directory, i.e. "armanpy-0.1.4"
+mkdir build
+cd build
+
+cmake .. -DCMAKE_BUILD_TYPE=Release -DARMADILLO_INCLUDE_DIR=~/Documents/armadillo_armanpy/arma_installdir/include -DARMADILLO_LIBRARIES=~/Documents/armadillo_armanpy/arma_installdir/lib/x86_64-linux-gnu/libarmandillo.so
+
+cmake --build . --config Release
+
+#To test:
+
+cd bin
+python example.py
+python armanpy_test_run.py

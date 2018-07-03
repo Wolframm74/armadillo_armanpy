@@ -1,0 +1,10 @@
+ /*By default, cmake assumes that the Armadillo library and the
+  corresponding header files are going to be installed in the default
+  system directory (eg. in the /usr hierarchy in Linux-based systems).
+  If you wish to install the library and headers in a different directory,
+  use the additional option CMAKE_INSTALL_PREFIX in this form:*/
+
+  mkdir ~/Documents/armadillo_armanpy/arma_installdir
+  cd armadillo-8.500.1
+  cmake . -DCMAKE_INSTALL_PREFIX:PATH=~/Documents/armadillo_armanpy/arma_installdir
+  make install
