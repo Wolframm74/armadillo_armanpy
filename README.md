@@ -18,5 +18,6 @@ Simply run install.py
 	cd armanpy-0.1.4/build/bin,
 	python example.py,
 	python armanpy_test_run.py
+6. Since no .gitignore file is provided, clear out junk with 'git clean -xdf'. If you encounter any errors, you may need to return to a previous step and self-resolve. Please share the fix if you find any thing that can be improved.
 
 Thank you for using and contributing to the software. Please report any bugs to 27311681+Wolframm74@users.noreply.github.com

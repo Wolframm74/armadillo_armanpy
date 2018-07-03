@@ -34,7 +34,6 @@ def export_installdir_variable(armadillo_armanpy_installdir):
 	run_cmd_via_os(cmd)
 
 def run_cmd_via_os(cmd):
-	print(run_cmd_via_os)
 	p = os.popen(cmd,"r")
 	while 1:
 	    line = p.readline()
@@ -52,8 +51,6 @@ def install_armadillo(retval):
 
 	# Compile armadillo
 	armadillo_armanpy_dir = os.getcwd()
-
-	print('armadillo_armanpy_dir='+armadillo_armanpy_dir)
 
 	armadillo_armanpy_installdir=armadillo_armanpy_dir+'/arma_installdir'
 	export_installdir_variable(armadillo_armanpy_installdir)
