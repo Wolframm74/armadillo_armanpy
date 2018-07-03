@@ -24,9 +24,7 @@ def file_replace_all(retval):
 def file_replace_string(input_file, input_str):
 
 	s = open(input_file).read()
-	
 	s = s.replace(input_str, '#'+input_str)	
-
 	f = open(input_file, 'w')
 	f.write(s)
 	f.close()
@@ -52,10 +50,7 @@ def run_cmd_via_subprocess(cmd):
 
 def install_armadillo(retval):
 
-	print("def install_armadillo")
-
 	# Compile armadillo
-
 	armadillo_armanpy_dir = os.getcwd()
 
 	print('armadillo_armanpy_dir='+armadillo_armanpy_dir)
@@ -80,10 +75,7 @@ def install_armadillo(retval):
 
 def install_armanpy(retval):
 
-	print("def install_armanpy")
-
 	armadillo_armanpy_dir = os.getcwd()
-
 	os.chdir(armadillo_armanpy_dir+'/armanpy-0.1.4')
 
 	cmd = 'mkdir build'
@@ -107,5 +99,4 @@ if __name__=="__main__":
 	retval=0
 
 	install_armadillo(retval)	
-
 	install_armanpy(retval)
