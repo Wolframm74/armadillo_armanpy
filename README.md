@@ -1,9 +1,10 @@
 =======
 # armadillo_armanpy
 Simple build and install of armadillo-8.500.1 and swig based python library armanpy-0.1.4
+Created and tested to work on Debian based Linux.
 
 1. Clone armadillo_armanpy in to some location.
-2. Install liblapack, libblas dependencies. 
+2. Install liblapack, libblas dependencies. Also install cmake. 
 3. Install Everything. 
 
 Method 1: Manually enter the steps in compile_armadillo.txt, followed by the steps in compile_armanpy.txt
