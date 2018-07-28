@@ -14,11 +14,12 @@ Simply run install.py
 
 	python install.py
 
-4. It is assumed that python has been installed on your system, if Step 3 failed, Step 3a is to install python.
-5. Test armanpy by running 
+4. It is assumed that python has been installed on your system, if Step 3 failed, Step 3a is to install python. Start with the following dependencies [libpython2.7-dev, libpython3.4-dev, python-dev, python3-dev, libpython-dev, libpython3-dev]. Also ensure that SWIG is installed and the Boost C++ libraries. i.e. 'swig' and 'libboostx.xx-dev'. 
+5. If install.py runs to completion, test armanpy by then running 
 	cd armanpy-0.1.4/build/bin,
 	python example.py,
 	python armanpy_test_run.py
+The tests should complete, showing some results, i.e. some matrices being printed out.
 6. Since no .gitignore file is provided, clear out junk with 'git clean -xdf'. If you encounter any errors, you may need to return to a previous step and self-resolve. Please share the fix if you find any thing that can be improved.
 
 Thank you for using and contributing to the software. Please report any bugs to 27311681+Wolframm74@users.noreply.github.com
