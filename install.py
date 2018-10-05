@@ -55,26 +55,59 @@ def file_replace_all(retval, LinuxPrefix):
 
 	file='example/CMakeFiles/_armanpyexample.dir/build.make'
 	string='bin/_armanpyexample.so: /lib/'+LinuxPrefix+'libarmadillo.so'
-	file_replace_string(os.getcwd()+'/'+file, string)
+	file_replace_string(os.getcwd()+'/'+file, string, '#'+string)
 
 	file='example/CMakeFiles/examplelib.dir/build.make'
 	string='bin/libexamplelib.so: /lib/'+LinuxPrefix+'libarmadillo.so'
-	file_replace_string(os.getcwd()+'/'+file, string)
+	file_replace_string(os.getcwd()+'/'+file, string, '#'+string)
 
 	file='test/CMakeFiles/armanpy_test_lib.dir/build.make'
 	string='bin/libarmanpy_test_lib.so: /lib/'+LinuxPrefix+'libarmadillo.so'
-	file_replace_string(os.getcwd()+'/'+file, string)
-	
+	file_replace_string(os.getcwd()+'/'+file, string, '#'+string)
+
 	file='test/CMakeFiles/_armanpytest.dir/build.make'
 	string='bin/_armanpytest.so: /lib/'+LinuxPrefix+'libarmadillo.so'
-	file_replace_string(os.getcwd()+'/'+file, string)
+	file_replace_string(os.getcwd()+'/'+file, string, '#'+string)
 
-	retval = 1 
+	retval = 1
 
-def file_replace_string(input_file, input_str):
+def check_CXX_INCLUDE_missing(file):
+
+	filebuf=open(file)
+	text=filebuf.read().strip().split()
+
+	if not "CXX_INCLUDES" in text:
+		print("CXX_INCLUDES missing! from "+str(file))
+		return True
+
+#I've observed that cmake can forget to add the variable CXX_INCLUDES to the build.make files, this function checks for it and adds it in.
+def file_replace_all_(retval, LinuxPrefix):
+
+	string='$(CXX_DEFINES) $(CXX_FLAGS)'
+	replace_with='$(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS)'
+
+	file='example/CMakeFiles/_armanpyexample.dir/build.make'
+	if check_CXX_INCLUDE_missing(file):
+		file_replace_string(os.getcwd()+'/'+file, string, replace_with)
+
+	file='example/CMakeFiles/examplelib.dir/build.make'
+	if check_CXX_INCLUDE_missing(file):
+		file_replace_string(os.getcwd()+'/'+file, string, replace_with)
+
+	file='test/CMakeFiles/armanpy_test_lib.dir/build.make'
+	if check_CXX_INCLUDE_missing(file):
+		file_replace_string(os.getcwd()+'/'+file, string, replace_with)
+
+	file='test/CMakeFiles/_armanpytest.dir/build.make'
+	if check_CXX_INCLUDE_missing(file):
+		file_replace_string(os.getcwd()+'/'+file, string, replace_with)
+
+	retval = 1
+
+def file_replace_string(input_file, input_str, input_str_replace_with):
 
 	s = open(input_file).read()
-	s = s.replace(input_str, '#'+input_str)	
+	s = s.replace(input_str, input_str_replace_with)
 	f = open(input_file, 'w')
 	f.write(s)
 	f.close()
@@ -82,6 +115,10 @@ def file_replace_string(input_file, input_str):
 def export_installdir_variable(armadillo_armanpy_installdir):
 	cmd='export ARMA_INSTALLDIR='+armadillo_armanpy_installdir+' && echo $ARMA_INSTALLDIR'
 	run_cmd_via_os(cmd)
+
+	if not "ARMA_INSTALLDIR" in os.environ:
+		os.environ['ARMA_INSTALLDIR']=armadillo_armanpy_installdir
+		print(os.environ['ARMA_INSTALLDIR'])
 
 def run_cmd_via_os(cmd):
 	p = os.popen(cmd,"r")
@@ -95,7 +132,6 @@ def run_cmd_via_subprocess(cmd):
 	output = p.stdout.read()
 	print(output)
 	#p.stdin.write(input)
-
 
 def install_armadillo(retval):
 
@@ -141,6 +177,7 @@ def install_armanpy(retval, bLinuxPrefix):
 	#Extra stuff
 	retval=0
 	file_replace_all(retval, LinuxPrefix)
+	file_replace_all_(retval, LinuxPrefix)
 
 	#if armadillo is not installed to /usr/include, we need to do some additional modifications
 	if not os.path.isfile('/usr/include/armadillo'):
@@ -154,7 +191,7 @@ def install_armanpy(retval, bLinuxPrefix):
 	retval=1
 
 if __name__=="__main__":
-	
+
 	retval=0
 
 	#You may need to compile with a specific "LinuxPrefix" depending on your system environment...
