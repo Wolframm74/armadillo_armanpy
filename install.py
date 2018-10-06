@@ -71,7 +71,7 @@ def file_replace_all(retval, LinuxPrefix):
 
 	retval = 1
 
-def check_CXX_INCLUDE_missing(file):
+def check_CXX_INCLUDES_missing(file):
 
 	filebuf=open(file)
 	text=filebuf.read().strip().split()
@@ -87,19 +87,19 @@ def file_replace_all_(retval, LinuxPrefix):
 	replace_with='$(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS)'
 
 	file='example/CMakeFiles/_armanpyexample.dir/build.make'
-	if check_CXX_INCLUDE_missing(file):
+	if check_CXX_INCLUDES_missing(file):
 		file_replace_string(os.getcwd()+'/'+file, string, replace_with)
 
 	file='example/CMakeFiles/examplelib.dir/build.make'
-	if check_CXX_INCLUDE_missing(file):
+	if check_CXX_INCLUDES_missing(file):
 		file_replace_string(os.getcwd()+'/'+file, string, replace_with)
 
 	file='test/CMakeFiles/armanpy_test_lib.dir/build.make'
-	if check_CXX_INCLUDE_missing(file):
+	if check_CXX_INCLUDES_missing(file):
 		file_replace_string(os.getcwd()+'/'+file, string, replace_with)
 
 	file='test/CMakeFiles/_armanpytest.dir/build.make'
-	if check_CXX_INCLUDE_missing(file):
+	if check_CXX_INCLUDES_missing(file):
 		file_replace_string(os.getcwd()+'/'+file, string, replace_with)
 
 	retval = 1
