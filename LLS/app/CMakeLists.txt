@@ -4,7 +4,13 @@ project(app_project)
 
 add_executable(myapp main_app.cpp)
 
-target_include_directories(myapp PRIVATE ${CMAKE_INSTALL_PREFIX}/usr/local/include)
+get_filename_component(DIR_ONE_ABOVE ../ ABSOLUTE)
+
+include_directories(${DIR_ONE_ABOVE}/shapes)
+
+target_include_directories(myapp PUBLIC ${CMAKE_INSTALL_PREFIX}/usr/local/include)
+
+#target_include_directories(myapp PRIVATE ${CMAKE_INSTALL_PREFIX}/include)
 target_link_libraries(myapp PRIVATE shapes_test)
 
 install(TARGETS myapp DESTINATION bin)

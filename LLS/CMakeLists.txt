@@ -21,21 +21,22 @@ add_subdirectory(app)
 #use the python script to run make and make install
 #execute_process(COMMAND  python install.py WORKING_DIRECTORY ${CMAKE_CURRENT_LIST_DIR})
 
-ExternalProject_Add(shapes-target
-	SOURCE_DIR ${CMAKE_CURRENT_LIST_DIR}/shapes
-        BUILD_COMMAND
-                make -f Makefile shapes_test
+#ExternalProject_Add(shapes-target
+#	SOURCE_DIR ${CMAKE_CURRENT_LIST_DIR}/shapes
+#        BUILD_COMMAND
+#                make -f Makefile shapes_test
+#
+#	INSTALL_COMMAND
+#		make DESTDIR=${CMAKE_INSTALL_PREFIX} install 
+#)
 
-	INSTALL_COMMAND
-		make DESTDIR=${CMAKE_INSTALL_PREFIX} install 
-)
 
-ExternalProject_Add(app-target
-	DEPENDS 
-		shapes-target
-	SOURCE_DIR ${CMAKE_CURRENT_LIST_DIR}/app
-	BUILD_COMMAND
-		make -f myapp
-)
+#ExternalProject_Add(app-target
+#	DEPENDS 
+#		shapes-target
+#	SOURCE_DIR ${CMAKE_CURRENT_LIST_DIR}/app
+#	BUILD_COMMAND
+#		make -f myapp
+#)
 
 message(STATUS "${CMAKE_CURRENT_LIST_DIR} CMAKE_INSTALL_PREFIX dir ... ${CMAKE_INSTALL_PREFIX}")
