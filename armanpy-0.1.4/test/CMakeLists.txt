@@ -25,6 +25,8 @@ set_source_files_properties( armanpy_test_lib.i PROPERTIES CPLUSPLUS ON)
 set_source_files_properties( armanpy_test_lib.i PROPERTIES SWIG_FLAGS "-ignoremissing;-w509" )
 
 
+message(STATUS "ARMADILLO LIBRARIES when building armanpy_test_lib.i ==> ${ARMADILLO_LIBRARIES}")
+
 swig_add_module    ( armanpytest python armanpy_test_lib.i )
 swig_link_libraries( armanpytest armanpy_test_lib ${PYTHON_LIBRARIES} ${ARMADILLO_LIBRARIES} )
 

@@ -133,6 +133,13 @@ def run_cmd_via_subprocess(cmd):
 	print(output)
 	#p.stdin.write(input)
 
+#return true if the library exists at the given prefix location
+#if it's not there, assume it's in the prefix location so return false.
+def check_prefix(input_str):
+	print(input_str)
+	return os.path.exists(input_str+'libarmadillo.so')
+
+#return true iff 
 def install_armadillo(retval):
 
 	# Compile armadillo
@@ -153,6 +160,12 @@ def install_armadillo(retval):
 	run_cmd_via_os(cmd)
 
 	os.chdir('..')
+
+	# Determine where the library was installed
+	if (check_prefix(armadillo_armanpy_dir+'/arma_installdir/lib/')):
+		return False	#If you get back True, no Linux Prefix is needed...
+	else:
+		return True	#If you get back False, set bLinuxPrefix True!!
 
 	retval=1
 
@@ -196,7 +209,7 @@ if __name__=="__main__":
 
 	#You may need to compile with a specific "LinuxPrefix" depending on your system environment...
 	#You can figure this out by compiling armadillo only and checking the output of "arma_installdir/lib"
-	bLinuxPrefix=True
+	####bLinuxPrefix=True
 
-	install_armadillo(retval)	
+	bLinuxPrefix=install_armadillo(retval)	
 	install_armanpy(retval, bLinuxPrefix)
