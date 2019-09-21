@@ -1,0 +1,5 @@
+LLS/build/*
+arma_installdir/*
+armadillo-8.500.1/build/*
+armanpy-0.1.4/build/*
+build/
