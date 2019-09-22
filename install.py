@@ -153,13 +153,23 @@ def install_armadillo(retval):
 
 	os.chdir(armadillo_armanpy_dir+'/armadillo-8.500.1')
 
-	cmd = 'cmake . -DCMAKE_INSTALL_PREFIX:PATH='+armadillo_armanpy_dir+'/arma_installdir'
+	cmd = 'mkdir build'
+        run_cmd_via_os(cmd)
+
+	os.chdir('build')
+
+	cmd = 'cmake .. -DCMAKE_INSTALL_PREFIX:PATH='+armadillo_armanpy_dir+'/arma_installdir'
+
+
+	print("install_armadillo install_armadillo install_armadillo, cmd {}".format(cmd))
+
+	cmd = 'cmake ..'
 	run_cmd_via_os(cmd)
 
 	cmd = 'make install'
 	run_cmd_via_os(cmd)
 
-	os.chdir('..')
+	os.chdir('../../')
 
 	# Determine where the library was installed
 	if (check_prefix(armadillo_armanpy_dir+'/arma_installdir/lib/')):
