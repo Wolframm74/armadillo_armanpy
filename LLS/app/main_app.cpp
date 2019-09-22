@@ -2,45 +2,45 @@
 #include <unistd.h>
 #include <iostream>
 #include <armadillo>
-#include <Rectangle.hpp>
+#include <Linear_LS.hpp>
 
 int main(int argc, char* argv[]){
+	
+	std::cout << "Let's do a linear least squares interpolation of vectors x and y\n" << "\n";
+	std::cout << "x = [1, 2, 3, 4]'\n" << "\n";
+	std::cout << "y = [6, 5, 7, 10]'\n" << "\n";
 
-	printf("Hello world eh\n");
+        std::cout << "A = [B1, 1*B2]\n" << "\n";
+        std::cout << "    [B1, 2*B2]\n" << "\n";
+	std::cout << "    [B1, 3*B2]\n" << "\n";
+	std::cout << "    [B1, 4*B2]\n" << "\n";
 
-	// Initialize the random generator
-	// Create a 4x4 random matrix and print it on the screen
- 	arma::Mat<double> A = arma::randu(4,4);
-	std::cout << "A:\n" << A << "\n";
+	std::cout << "Where A = x * [B1, B2] \n" << "\n";
 
-	// Multiply A with his transpose:
-	std::cout << "A * A.t() =\n";
-	std::cout << A * A.t() << "\n";
+	std::cout << "and we'd like to solve for the vector of params, p=[B1, B2], that we seek but is unknown!!!!\n" << "\n";
 
-	// Access/Modify rows and columns from the array:
-	A.row(0) = A.row(1) + A.row(3);
-	A.col(3).zeros();
-	std::cout << "add rows 1 and 3, store result in row 0, also fill 4th column with zeros:\n";
-	std::cout << "A:\n" << A << "\n";
+	std::cout << "-- but, not to worry -- we'll have some help from Armadillo, with that.\n\n";
 
 	std::array<double, 4> arr_x = {1, 2, 3, 4};
-	std::array<double, 4> arr_y = {6, 5, 7, 10};
+        std::array<double, 4> arr_y = {6, 5, 7, 10};
 
-	std::cout << "add rows 1 and 3, store rsadfffffffffffffffffffffffi:\n";
+	std::cout << "Substituting the values of x into A, we obtain\n" << "\n";
 
-	//std::cout << "x vector:\n" << arr_x << "\n";
-	//std::cout << "y vector:\n" << arr_y << "\n";
+        // compute it 
+        LLS::LLS_impl lls=LLS::LLS_impl(arr_x, arr_y, 4);
 
-	// compute it 
-	Shapes::A2DD c=Shapes::A2DD(arr_x, arr_y, 4);
-	
 	double B1, B2;
-	
-	// check that this seems right ...
-	c.getParams(B1, B2);
 
-	//std::cout << "B1:\n" << B1 << "\n";
-	//std::cout << "B2:\n" << B2 << "\n";
+	// check that this seems right ...
+	lls.getParams(B1, B2);
+
+	std::cout << "by doing p = A^[+] * y, where A^[+] is the pseudoinverse of A.\n" << "\n";
+
+	std::cout << "Solution::::\n\n";
+	std::cout << "B1: " << B1 << "\n";
+        std::cout << "B2: " << B2 << "\n\n";
+
+	std::cout << "Note that, p = [3.5, 1.4]' parametrizes the line y[i] = B2*x[i] + B1 for i=1:N=4, \n\nwhich according to the LLS solution is actually the 'line of best fit'.\n";
 
 }
 

@@ -1,7 +1,6 @@
-// A2DD.cpp
-#include "Rectangle.hpp"
+#include "Linear_LS.hpp"
 
-namespace Shapes {
+namespace LLS {
 
 using namespace arma;
 
@@ -13,8 +12,8 @@ using namespace arma;
 // B1 + xN*B2 = yN
 //
 
-//A2DD::A2DD(auto& x_arr, auto& y_arr, int N) //assume x_arr and y_arr are doubles
-A2DD::A2DD(std::array<double, 4ul>& x_arr, std::array<double, 4ul>& y_arr, int N): eq_mat(N, 2), y_vec(N), parameter(2) 
+//LLS_impl::LLS_impl(auto& x_arr, auto& y_arr, int N) //assume x_arr and y_arr are doubles
+LLS_impl::LLS_impl(std::array<double, 4ul>& x_arr, std::array<double, 4ul>& y_arr, int N): eq_mat(N, 2), y_vec(N), parameter(2) 
 {
 	eq_mat.ones();
 
@@ -30,18 +29,14 @@ A2DD::A2DD(std::array<double, 4ul>& x_arr, std::array<double, 4ul>& y_arr, int N
 }
 
 // Return B1 and B2
-int A2DD::getParams(double& B1, double& B2)
+int LLS_impl::getParams(double& B1, double& B2)
 {
-	std::cout << "getParams printf:\n";
   	//Invert the matrix, as part of the solution
 	//From the vector of 2, return B1 and B2
 	parameter = pinv(eq_mat)*y_vec;
 
 	B1 = parameter(0);
 	B2 = parameter(1);
-	
-	std::cout << B1 << "\n";
-	std::cout << B2 << "\n";
 	
 }
 
