@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 2.8)
 project(libtest_project)
-add_library(lls_lib Linear_LS.cpp)
+add_library(lls_lib SHARED Linear_LS.cpp array_utility.cpp ext_intf.cpp)
 
 set(INCLUDE_DIRS ${ARMADILLO_INCLUDE})
 
@@ -16,4 +16,4 @@ target_include_directories(lls_lib PUBLIC ${INCLUDE_DIRS})
 target_link_libraries(lls_lib PRIVATE ${ARMADILLO_LIBRARY})
 
 install(TARGETS lls_lib DESTINATION lib)
-install(FILES Linear_LS.hpp DESTINATION include)
+install(FILES Linear_LS.hpp array_utility.hpp ext_intf.hpp DESTINATION include)

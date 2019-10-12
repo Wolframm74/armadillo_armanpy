@@ -21,13 +21,16 @@ int main(int argc, char* argv[]){
 
 	std::cout << "-- but, not to worry -- we'll have some help from Armadillo, with that.\n\n";
 
-	std::array<double, 4> arr_x = {1, 2, 3, 4};
-        std::array<double, 4> arr_y = {6, 5, 7, 10};
+	std::vector<double> arr_x = {1, 2, 3, 4};
+        std::vector<double> arr_y = {6, 5, 7, 10};
+	std::vector<double> param_b = {0, 0};
 
 	std::cout << "Substituting the values of x into A, we obtain\n" << "\n";
 
         // compute it 
-        LLS::LLS_impl lls=LLS::LLS_impl(arr_x, arr_y, 4);
+        LLS::LLS_impl lls=LLS::LLS_impl(arr_x, arr_y, 4, param_b, 2);
+
+	lls.solveLLS();
 
 	double B1, B2;
 
