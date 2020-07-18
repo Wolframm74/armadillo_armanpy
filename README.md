@@ -23,4 +23,29 @@ Simply run install.py
 The tests should complete, showing some results, i.e. some matrices being printed out.
 7. Since no .gitignore file is provided, clear out junk with 'git clean -xdf'. If you encounter any errors, you may need to return to a previous step and self-resolve. Please share the fix if you find any thing that can be improved.
 
+Method 3:
+From the `armadillo_armanpy` folder run
+
+```
+cmake .
+```
+
+or 
+
+```
+cmake -DPYTHON3=1 .
+```
+
+to have the build script run internally with python 3 as your default python interpreter. This approach is as described in the `LLS/README.md` file one directory below.
+
+=======
+
 Thank you for using and contributing to the software. Please report any bugs to 27311681+Wolframm74@users.noreply.github.com
+
+```                                _ _ _ _                                                      
+  __ _ _ __ _ __ ___   __ _  __| (_) | | ___     __ _ _ __ _ __ ___   __ _ _ __  _ __  _   _ 
+ / _` | '__| '_ ` _ \ / _` |/ _` | | | |/ _ \   / _` | '__| '_ ` _ \ / _` | '_ \| '_ \| | | |
+| (_| | |  | | | | | | (_| | (_| | | | | (_) | | (_| | |  | | | | | | (_| | | | | |_) | |_| |
+ \__,_|_|  |_| |_| |_|\__,_|\__,_|_|_|_|\___/___\__,_|_|  |_| |_| |_|\__,_|_| |_| .__/ \__, |
+                                           |_____|                              |_|    |___/ 
+```
