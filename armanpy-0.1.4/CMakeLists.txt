@@ -42,8 +42,13 @@ message( STATUS "  SWIG_USE_FILE: ${SWIG_USE_FILE}" )
 
 ### Python
 # set( PythonLibs_FIND_VERSION 2.7 )
+if (PYTHON3)
+find_package( PythonLibs 3 REQUIRED )
+find_package( PythonInterp 3 REQUIRED )
+else()
 find_package( PythonLibs 2.7 REQUIRED )
 find_package( PythonInterp 2.7 REQUIRED )
+endif()
 
 #set( PYTHON_INCLUDE_DIRS /usr/include/python )
 #set( PYTHON_INCLUDE_DIRS /usr/lib64/libpython2.7.so )

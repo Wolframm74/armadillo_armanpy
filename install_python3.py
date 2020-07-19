@@ -195,7 +195,7 @@ def install_armanpy(retval, bLinuxPrefix):
 
 	os.chdir('build')
 
-	cmd = 'cmake .. -DCMAKE_BUILD_TYPE=Release -DARMADILLO_INCLUDE_DIR=$ARMA_INSTALLDIR/include -DARMADILLO_LIBRARIES=$ARMA_INSTALLDIR/lib/'+LinuxPrefix+'libarmadillo.so'
+	cmd = 'cmake .. -DPYTHON3=1 -DCMAKE_BUILD_TYPE=Release -DARMADILLO_INCLUDE_DIR=$ARMA_INSTALLDIR/include -DARMADILLO_LIBRARIES=$ARMA_INSTALLDIR/lib/'+LinuxPrefix+'libarmadillo.so'
 	run_cmd_via_os(cmd)	
 
 	#Extra stuff
